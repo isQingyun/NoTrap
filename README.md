@@ -21,10 +21,10 @@
 3. Open virtual machine command prompt in windows or anaconda prompt.
 4. Run `pip install pytesseract`
 
-二、pip安装别的依赖库
+二、pip安装依赖库
 
 ```cmd
-pip install opencv-python jieba pandas pypinyin Pillow tencentcloud-sdk-python
+pip install -r requirements.txt
 ```
 
 三、（*）注册腾讯翻译api，将`main.py`的下列代码内容替换成自己的api_secret和api_key：
@@ -53,6 +53,8 @@ str_to_mp3(
 ```
 
 五、确认上述过程完成无误，开始编写自己的代码吧！
+
+*注意，如果部分库安装提示OS Error，建议在管理员模式下启动cmd并重新安装。
 
 ## 开发过程
 
@@ -224,3 +226,13 @@ str_to_mp3(
   - [x] 打字稳定
     
   - [x] 没有任何界面操作，跟随前序代码执行。
+
+## 决赛新增功能
+
+在初赛到决赛期间（截止到2024.9.20日），我们对设备进行了大规模升级，主要包括：
+1. 重构UI，将系统功能划分为学习模式和无障碍模式，方便非视障人群学习盲文
+2. 增加手语模块，实现对10个简单手语的识别，拓展系统的受众人群
+3. 为设备定做木制外壳，将系统集成为箱式设备，便于移动
+4. 增加4x4矩阵键盘实现盲文输入
+
+希望本设备能够真正帮助到有需要的人！

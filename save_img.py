@@ -1,15 +1,16 @@
 import os
 import sys
-import time
 
 import cv2
 import numpy as np
 import serial
 
+from ssharp import ImageAugument
+
 # 定义保存图像的目录路径
-save_directory = r"C:\Users\lockw\Desktop\NoTrap\img"
+save_directory = "C:\\Users\\lockw\\Desktop\\NoTrap\\img"
 # 使用默认串口端口（例如 'COM3' 或 '/dev/ttyUSB0'）
-serial_port = sys.argv[1] if len(sys.argv) > 1 else "COM5"
+serial_port = sys.argv[1] if len(sys.argv) > 1 else "COM10"
 
 
 def parse_image(data):
@@ -61,8 +62,11 @@ while True:
             filename = os.path.join(save_directory, f"image_{image_counter}.png")
 
             cv2.imwrite(filename, img)
+            ImageAugument(save_directory + f"\\image_{image_counter}.png")
             print(f"Saved {filename}")
             image_counter += 1
+            if image_counter >= 20:
+                image_counter = 0
             # 添加短暂延迟
             # time.sleep(0.1)
         # ser.reset_input_buffer()  # 清空缓冲区

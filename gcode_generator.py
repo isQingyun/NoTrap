@@ -8,14 +8,14 @@ def print_array(matrixs):
     # 参数
     x_offset = 0
     y_offset = 0
-    dot_size = 4
-    pen_up = 5
-    pen_down = -1
+    dot_size = 6
+    pen_up = 0
+    pen_down = -25
     travel_speed = 3000
-    draw_speed = 3000
-    character_space = 15
-    max_characters = 9
-    line_space = 25
+    draw_speed = 2000
+    character_space = 20
+    max_characters = 7
+    line_space = 30
 
     # 串口写入函数
     def write(sstr):
@@ -23,7 +23,7 @@ def print_array(matrixs):
         ser.write(strByte)
 
     # 启动串口
-    ser = serial.Serial("COM6", 115200)  # 将COM3修改为自己的串口
+    ser = serial.Serial("COM9", 115200)  # 将COM3修改为自己的串口
     time.sleep(0.5)
 
     # 初始化
@@ -53,9 +53,9 @@ def print_array(matrixs):
                     write(f"G00 X{corexy_x} Y{corexy_y} F{travel_speed}\r\n")
                     time.sleep(0.9)
                     write(f"G00 Z{pen_down} F{draw_speed}\r\n")
-                    time.sleep(0.9)
-                    write(f"G00 Z{pen_up} F{travel_speed}\r\n")
-                    time.sleep(1.8)
+                    time.sleep(1.5)
+                    write(f"G00 Z{pen_up} F{draw_speed}\r\n")
+                    time.sleep(2)
 
         if not (z + 1) % max_characters:
             y_offset += line_space
@@ -65,5 +65,5 @@ def print_array(matrixs):
         time.sleep(1.8)
 
     # 结束, 返回起始位置
-    ser.write(b"G00 X0 Y0 Z10 F3000 \r\n")
+    ser.write(b"G00 X0 Y0 F3000 \r\n")
     ser.close()
